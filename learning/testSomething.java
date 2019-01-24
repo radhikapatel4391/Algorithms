@@ -1,6 +1,8 @@
 package learning;
 import java.util.*;
 
+import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
+
 public class testSomething {
 
 	public static void main(String[] args) {
@@ -15,6 +17,22 @@ public class testSomething {
 		
 		//LinkedList list = new LinkedList();
 	//	list.
+		
+		/*int k = '5';
+		System.out.println(k);
+		
+		k = (int)Integer.toString(123).charAt(0);
+		System.out.println(k);
+		
+		k = Integer.toString(123).charAt(0);
+		System.out.println(k);*/
+		
+		
+		
+	
+		
+		System.out.println((2/100)%10);
+		
 	}
 	
 
