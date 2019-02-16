@@ -36,6 +36,7 @@ public class Main {
 		}
 		return projects;
 	}
+	//solution 2..............
 	public static Mystack<Project> getOrderedUsingDFS(HashMap<String,Project> projects)
 	{
 		Mystack<Project> stack = new Mystack<Project>();
@@ -85,6 +86,8 @@ public class Main {
 		
 		return true;
 	}
+	
+	//solution 1...............
 	public static Project[] getOrdered(HashMap<String,Project> projects)
 	{
 		Project[] ordered = new Project[projects.size()];

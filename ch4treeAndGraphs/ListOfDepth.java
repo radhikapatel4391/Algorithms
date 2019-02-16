@@ -52,7 +52,7 @@ public class ListOfDepth {
 	
 	public static void main(String[] args) {
 		int[] arr = new int[] {1,2,3,4,5,6,7,8,9};
-		TreeNode r = MinimalTree.createMinimalBST(arr);
+		TreeNode r = SortedArraytoMinimalTreeBBST.createMinimalBST(arr);
 		ArrayList<LinkedList<TreeNode>> lists = getLevelListNonRecursive(r);
 		//ArrayList<LinkedList<TreeNode>> lists = getLevelList(r);
 		int count = 0;

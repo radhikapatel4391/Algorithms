@@ -17,21 +17,22 @@ public class testSomething {
 		
 		//LinkedList list = new LinkedList();
 	//	list.
-		
-		/*int k = '5';
+		boolean b[] = new boolean[3];
+		System.out.println(b[0]);
+		int k = (int)'5';
 		System.out.println(k);
-		
+		/*
 		k = (int)Integer.toString(123).charAt(0);
 		System.out.println(k);
 		
 		k = Integer.toString(123).charAt(0);
 		System.out.println(k);*/
 		
+		/*
+		int i = 0/2;
+	System.out.println(i);
 		
-		
-	
-		
-		System.out.println((2/100)%10);
+		System.out.println((2/100)%10);*/
 		
 	}
 	
