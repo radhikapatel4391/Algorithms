@@ -6,7 +6,7 @@ public class ExInstanceof{
 
        Parent obj1 = new Parent();
        Parent obj2 = new Child();
-
+//........................................
        System.out.println("obj1 instanceof Parent: "
            + (obj1 instanceof Parent));
        System.out.println("obj1 instanceof Child: "
