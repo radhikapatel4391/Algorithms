@@ -1,4 +1,4 @@
-package learning;
+package javaPractice;
 import java.util.*;
 
 import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;

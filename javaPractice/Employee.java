@@ -1,4 +1,4 @@
-package learning;
+package javaPractice;
 class Employee implements Comparable<Employee>{
 	private String id;
 	private String name;

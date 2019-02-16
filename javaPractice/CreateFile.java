@@ -1,4 +1,4 @@
-package learning;
+package javaPractice;
 import java.io.File;
 import java.io.IOException;
 public class CreateFile{

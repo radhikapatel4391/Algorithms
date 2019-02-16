@@ -1,4 +1,4 @@
-package learning;
+package javaPractice;
 import java.util.*;
 public class RandomDemo{
 	

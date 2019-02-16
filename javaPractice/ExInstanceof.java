@@ -1,4 +1,4 @@
-package learning;
+package javaPractice;
 
 public class ExInstanceof{
 
