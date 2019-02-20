@@ -1,7 +1,11 @@
 package hashtable;
 
-public class Node<K,V> {
-	
+ public class Node<K,V> {
+	 public  static int temp=90;
+	 
+	static{
+		System.out.println("Node");
+	}
 	private Node<K,V> pre=null;
 	private Node<K,V> next=null;	
 	private V value;
@@ -11,6 +15,7 @@ public class Node<K,V> {
 	{
 		this.key = key;
 		this.value = value;
+		
 		
 	}
 	public V getValue() {

@@ -1,6 +1,6 @@
 package javaPractice;
 
-public interface test2 {
+public interface Test2 {
 	public static final int i = 32;
 	 public void get();
 	 default void test() {

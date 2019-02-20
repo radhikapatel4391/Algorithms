@@ -1,9 +1,9 @@
 package javaPractice;
-import java.util.*;
+//import java.util.*;
 
-import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
+import static java.lang.Math.*;
 
-public class testSomething {
+public class TestSomething {
 
 	public static void main(String[] args) {
 		
@@ -17,6 +17,7 @@ public class testSomething {
 		
 		//LinkedList list = new LinkedList();
 	//	list.
+		int i = (int) ceil(8.9);
 		boolean b[] = new boolean[3];
 		System.out.println(b[0]);
 		int k = (int)'5';

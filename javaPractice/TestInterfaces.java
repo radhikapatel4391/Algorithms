@@ -1,14 +1,14 @@
 package javaPractice;
 
-public class testInterfaces implements test2,test1{
+public class TestInterfaces {
 
 	public void get() {
 		//System.out.println(this.i);
-		test2.super.test();
+	//	Test2.super.test();
 
 	}
 	public static void main(String[] args) {
-		test1.testStatic();
+		Test1.testStatic();
 	}
 	
 	  public void test() { System.out.println("testInterface"); }
