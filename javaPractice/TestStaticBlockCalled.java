@@ -3,7 +3,7 @@ package javaPractice;
 import hashtable.Node;
 
 public class TestStaticBlockCalled extends TestStaticBlock{
-	TestStaticBlockCalled()
+	public TestStaticBlockCalled()
 	{
 		super(7);
 	}

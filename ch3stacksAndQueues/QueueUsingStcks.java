@@ -1,6 +1,6 @@
 package ch3stacksAndQueues;
 
-import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
+
 
 public class QueueUsingStcks<T> {
 

@@ -2,9 +2,18 @@ package javaPractice;
 
 
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 public class ArrayListUsage {
 	public static void main(String[] args)
 	{
+		List<Integer> range = IntStream.rangeClosed(0, 5*5-1)
+			    .boxed().collect(Collectors.toList());
+		System.out.println(range.size());
+		for(Integer i:range)
+		{
+			System.out.println(i);
+		}
 		ArrayList<String> al = new ArrayList<String>(100);
 		
 		al.add("Radhika");

@@ -1,4 +1,4 @@
-package cs411;
+
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -39,8 +39,9 @@ public class alive {
 			matrix = new boolean[rSize][cSize];
 			totalElements = (m) * (n);
 			makeAlive();
-			System.out.print(canBeAlive());
+			System.out.println(canBeAlive());
 		}
+		
 		sc.close();
 		 
 
