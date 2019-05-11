@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
-public class alive {
+public class e_alive {
 	static int rSize;
 	static int cSize;
 	static boolean[][] matrix;
