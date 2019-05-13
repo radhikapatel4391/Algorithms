@@ -25,7 +25,7 @@ public class m_toll {
 			if (edgecount==-1)
 					return;
 			System.out.printf("Case %d: ",caseCount);
-			ArrayList<Edge> edges = new ArrayList<Edge>(edgecount);
+			ArrayList<Edge> edges = new ArrayList<Edge>(2*edgecount);
 			Set<String> vertices = new HashSet<String>();
 			while(edgecount>0)
 			{
@@ -34,7 +34,8 @@ public class m_toll {
 				String e = sc.next("[A-Za-z]");
 				vertices.add(e);				
 				vertices.add(s);			
-				edges.add(object.new Edge(s,e));				
+				edges.add(object.new Edge(s,e));
+				edges.add(object.new Edge(e,s));	
 			}
 			int n = sc.nextInt();
 			String start = sc.next("[A-Za-z]");
@@ -60,7 +61,11 @@ public class m_toll {
 			for(Edge edge:edges)
 			{
 				String key = edge.startNode;
-				graph.computeIfAbsent(key,k->new ArrayList<Edge>()).add(edge);
+				ArrayList<Edge> value = graph.get(key);
+				if(value==null)
+					value = new ArrayList<Edge>();
+				value.add(edge);
+				graph.put(key,value);
 			}
 			int ans = findMinVlaue(graph,mtable,start,end);
 			 hasUppercase = !start.equals(start.toLowerCase());
@@ -83,27 +88,37 @@ public class m_toll {
 		int ans = mtable.get(start);
 		if(start==end)
 			return ans;
-		if(ans==-1) //lopp case...
-			return 10000;
-		if(ans!=0)
+//		if(ans==-1) //lopp case...
+//			return Integer.MAX_VALUE;
+		if(ans!=0 && ans!=Integer.MAX_VALUE)
 			return ans;
 		mtable.put(start,-1);
 		int min = Integer.MAX_VALUE;
-		for(Edge e:graph.get(start))
+		ArrayList<Edge> list = graph.get(start);
+		if(list!=null)
 		{
-			int x = findMinVlaue(graph,mtable,e.endNode,end);			
-			min = Math.min(min, x);
+		    for(Edge e:list)
+		{
+		    if(mtable.get(e.endNode)!=-1)
+		    {
+		    	int x = findMinVlaue(graph,mtable,e.endNode,end);			
+				min = Math.min(min, x);
+		    }
 		}
-		boolean hasUppercase = !start.equals(start.toLowerCase());
-		//	boolean hasLowercase = !start.equals(start.toUpperCase());
-			if(hasUppercase)
-			{
-				double a = 20/19d;
-				 a = min*a; 
-				min= (int)Math.ceil(a);
-			}
-			else
-				min = min+1;
+		}
+		if(min<Integer.MAX_VALUE)
+		{
+			boolean hasUppercase = !start.equals(start.toLowerCase());
+			//	boolean hasLowercase = !start.equals(start.toUpperCase());
+				if(hasUppercase)
+				{
+					double a = 20/19d;
+					 a = min*a; 
+					min= (int)Math.ceil(a);
+				}
+				else
+					min = min+1;
+		}
 		mtable.put(start,min);
 		return min;
 		
