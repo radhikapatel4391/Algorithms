@@ -1,4 +1,6 @@
 import java.util.*;
+
+
 public class m_maxflow {
 	class Edge
 	{
@@ -34,41 +36,59 @@ public class m_maxflow {
 				edges.add(object.new Edge(s,e,w));
 				s = sc.next();
 			}
-
-			HashMap<String,HashMap<String,Integer>> minPath = new HashMap<String,HashMap<String,Integer>>();
-			for(Edge edge:edges)
+			if(vertices.size()<=0)
 			{
-				String key = edge.startNode;
-				minPath.computeIfAbsent(key, k -> new HashMap<String,Integer>()).put(edge.endNode,edge.weight);
-				
-			}
-			int ans = findMaxofMin(minPath,start,end);
-			if(ans==Integer.MAX_VALUE || ans==Integer.MIN_VALUE)
 				System.out.println("NIL");
-			else
-				System.out.println(ans);
+				
+			}else{
+				HashMap<String,ArrayList<Edge>> graph = new HashMap<String,ArrayList<Edge>>();
+				HashMap<String,Integer> mtable = new HashMap<String,Integer>(vertices.size());
+				for(String ss:vertices)
+				{
+					mtable.put(ss, Integer.MAX_VALUE);
+				}
+				for(Edge edge:edges)
+				{
+					String key = edge.startNode;
+					ArrayList<Edge> value = graph.get(key);
+					if(value==null)
+						value = new ArrayList<Edge>();
+					value.add(edge);
+					graph.put(key,value);
+				}
+				int ans = findMaxofMin(graph,mtable,start,end);
+				if(ans==Integer.MAX_VALUE || ans==Integer.MIN_VALUE)
+					System.out.println("NIL");
+				else
+					System.out.println(ans);
+			}
+			
 		}
 		 sc.close();
 	}
 	
-	public static int findMaxofMin(HashMap<String,HashMap<String,Integer>> minPath,String start,String end)
+	public static int findMaxofMin(HashMap<String,ArrayList<Edge>> graph,HashMap<String,Integer> mtable,String start,String end)
 	{
 		int max = Integer.MIN_VALUE;
 		
-		if(start==end)
+		if(start.charAt(0)==end.charAt(0))
 			return Integer.MAX_VALUE;
-		HashMap<String,Integer> currentMap = minPath.get(start);
-		if(currentMap!=null)
+		int ansSub = mtable.get(start);
+		if(ansSub!=Integer.MAX_VALUE && ansSub!=-1)
+			return ansSub;
+		ArrayList<Edge>  edges = graph.get(start);
+		mtable.put(start,-1);
+		if(edges!=null)
 		{
-			Integer val = currentMap.get(end);
-			if( val!= null)
-				return val;			
-			for(String s:currentMap.keySet())
+					
+			for(Edge edge:edges)
 			{
-				max = Math.max(max,Math.min(currentMap.get(s),findMaxofMin(minPath,s,end)));
+				if(mtable.get(edge.endNode)!=-1)
+					max = Math.max(max,Math.min(edge.weight,findMaxofMin(graph,mtable,edge.endNode,end)));
 			}
-		}
-		minPath.computeIfAbsent(start,k -> new HashMap<String,Integer>()).put(end,max);
+		}	
+		mtable.put(start,max);
+		
 		return max;
 	}
 
