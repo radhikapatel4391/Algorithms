@@ -1,84 +1,53 @@
 import java.util.*;
 
 
-public class m_maxflow {
+public class m_toll {
 	class Edge
 	{
 		String startNode;
 		String endNode;
-		int weight;
-		Edge(String start,String end,int weight)
+		
+		Edge(String start,String end)
 		{
 			this.startNode = start;
 			this.endNode = end;
-			this.weight = weight;
+			
 		}
 	}
-
 	public static void main(String[] args) {
+		m_toll object = new m_toll();
 		Scanner sc = new Scanner(System.in);
-		m_maxflow object = new m_maxflow();
+		int caseCount = 0;
 		while(sc.hasNext())
 		{
-<<<<<<< HEAD
 			caseCount++;			
 			int edgecount = sc.nextInt();
 			if (edgecount==-1)
 					return;
 			System.out.printf("Case %d: ",caseCount);
 			ArrayList<Edge> edges = new ArrayList<Edge>(2*edgecount);
-=======
-			String start = sc.next("[A-Z]");
-			String end = sc.next("[A-Z]");
-			ArrayList<Edge> edges = new ArrayList<Edge>();
->>>>>>> parent of 48f535b... Revert "update"
 			Set<String> vertices = new HashSet<String>();
-			String s = sc.next();
-			while(!s.contains("*"))
+			while(edgecount>0)
 			{
-				if(!s.matches("[A-Z]"))
-					s = sc.next("[A-Z]");
-				String e = sc.next("[A-Z]");
+				edgecount--;
+				String s = sc.next("[A-Za-z]");				
+				String e = sc.next("[A-Za-z]");
 				vertices.add(e);				
-<<<<<<< HEAD
 				vertices.add(s);			
 				edges.add(object.new Edge(s,e));
 				edges.add(object.new Edge(e,s));	
-=======
-				vertices.add(s);
-				int w = Integer.parseInt(sc.next("\\d+"));
-				edges.add(object.new Edge(s,e,w));
-				s = sc.next();
->>>>>>> parent of 48f535b... Revert "update"
 			}
-			if(vertices.size()<=0)
+			int n = sc.nextInt();
+			String start = sc.next("[A-Za-z]");
+			String end = sc.next("[A-Za-z]");
+			
+			HashMap<String,ArrayList<Edge>> graph = new HashMap<String,ArrayList<Edge>>();
+			HashMap<String,Integer> mtable = new HashMap<String,Integer>(vertices.size());
+			for(String s:vertices)
 			{
-				System.out.println("NIL");
-				
-			}else{
-				HashMap<String,ArrayList<Edge>> graph = new HashMap<String,ArrayList<Edge>>();
-				HashMap<String,Integer> mtable = new HashMap<String,Integer>(vertices.size());
-				for(String ss:vertices)
-				{
-					mtable.put(ss, Integer.MAX_VALUE);
-				}
-				for(Edge edge:edges)
-				{
-					String key = edge.startNode;
-					ArrayList<Edge> value = graph.get(key);
-					if(value==null)
-						value = new ArrayList<Edge>();
-					value.add(edge);
-					graph.put(key,value);
-				}
-				int ans = findMaxofMin(graph,mtable,start,end);
-				if(ans==Integer.MAX_VALUE || ans==Integer.MIN_VALUE)
-					System.out.println("NIL");
-				else
-					System.out.println(ans);
+				mtable.put(s, 0);
 			}
 			
-<<<<<<< HEAD
 			boolean hasUppercase = !end.equals(end.toLowerCase());
 			if(hasUppercase)
 			{
@@ -110,17 +79,12 @@ public class m_maxflow {
 				ans = ans-1;
 			}			
 			System.out.println(ans);
-=======
->>>>>>> parent of 48f535b... Revert "update"
 		}
-		 sc.close();
-	}
-	
-	public static int findMaxofMin(HashMap<String,ArrayList<Edge>> graph,HashMap<String,Integer> mtable,String start,String end)
+		 sc.close();			
+		}
+	public static int findMinVlaue(HashMap<String,ArrayList<Edge>> graph,HashMap<String,Integer> mtable,String start,String end)
 	{
-		int max = Integer.MIN_VALUE;
 		
-<<<<<<< HEAD
 		int ans = mtable.get(start);
 		if(start==end)
 			return ans;
@@ -128,18 +92,13 @@ public class m_maxflow {
 //			return Integer.MAX_VALUE;
 		if(ans!=0 && ans!=Integer.MAX_VALUE)
 			return ans;
-=======
-		if(start.charAt(0)==end.charAt(0))
-			return Integer.MAX_VALUE;
-		int ansSub = mtable.get(start);
-		if(ansSub!=Integer.MAX_VALUE && ansSub!=-1)
-			return ansSub;
-		ArrayList<Edge>  edges = graph.get(start);
->>>>>>> parent of 48f535b... Revert "update"
 		mtable.put(start,-1);
-		if(edges!=null)
+		int min = Integer.MAX_VALUE;
+		ArrayList<Edge> list = graph.get(start);
+		if(list!=null)
 		{
-<<<<<<< HEAD
+		    for(Edge e:list)
+		{
 		    if(mtable.get(e.endNode)!=-1)
 		    {
 		    	int x = findMinVlaue(graph,mtable,e.endNode,end);			
@@ -162,18 +121,9 @@ public class m_maxflow {
 		}
 		mtable.put(start,min);
 		return min;
-=======
-					
-			for(Edge edge:edges)
-			{
-				if(mtable.get(edge.endNode)!=-1)
-					max = Math.max(max,Math.min(edge.weight,findMaxofMin(graph,mtable,edge.endNode,end)));
-			}
-		}	
-		mtable.put(start,max);
->>>>>>> parent of 48f535b... Revert "update"
 		
-		return max;
 	}
 
-}
+	}
+
+
