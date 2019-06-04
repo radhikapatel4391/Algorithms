@@ -25,11 +25,7 @@ public class m_toll {
 			if (edgecount==-1)
 					return;
 			System.out.printf("Case %d: ",caseCount);
-<<<<<<< HEAD
 			ArrayList<Edge> edges = new ArrayList<Edge>(2*edgecount);
-=======
-			ArrayList<Edge> edges = new ArrayList<Edge>(edgecount);
->>>>>>> parent of 97c8f38... update
 			Set<String> vertices = new HashSet<String>();
 			while(edgecount>0)
 			{
@@ -38,12 +34,8 @@ public class m_toll {
 				String e = sc.next("[A-Za-z]");
 				vertices.add(e);				
 				vertices.add(s);			
-<<<<<<< HEAD
 				edges.add(object.new Edge(s,e));
 				edges.add(object.new Edge(e,s));	
-=======
-				edges.add(object.new Edge(s,e));				
->>>>>>> parent of 97c8f38... update
 			}
 			int n = sc.nextInt();
 			String start = sc.next("[A-Za-z]");
@@ -69,15 +61,11 @@ public class m_toll {
 			for(Edge edge:edges)
 			{
 				String key = edge.startNode;
-<<<<<<< HEAD
 				ArrayList<Edge> value = graph.get(key);
 				if(value==null)
 					value = new ArrayList<Edge>();
 				value.add(edge);
 				graph.put(key,value);
-=======
-				graph.computeIfAbsent(key,k->new ArrayList<Edge>()).add(edge);
->>>>>>> parent of 97c8f38... update
 			}
 			int ans = findMinVlaue(graph,mtable,start,end);
 			 hasUppercase = !start.equals(start.toLowerCase());
@@ -100,7 +88,6 @@ public class m_toll {
 		int ans = mtable.get(start);
 		if(start==end)
 			return ans;
-<<<<<<< HEAD
 //		if(ans==-1) //lopp case...
 //			return Integer.MAX_VALUE;
 		if(ans!=0 && ans!=Integer.MAX_VALUE)
@@ -132,29 +119,6 @@ public class m_toll {
 				else
 					min = min+1;
 		}
-=======
-		if(ans==-1) //lopp case...
-			return 10000;
-		if(ans!=0)
-			return ans;
-		mtable.put(start,-1);
-		int min = Integer.MAX_VALUE;
-		for(Edge e:graph.get(start))
-		{
-			int x = findMinVlaue(graph,mtable,e.endNode,end);			
-			min = Math.min(min, x);
-		}
-		boolean hasUppercase = !start.equals(start.toLowerCase());
-		//	boolean hasLowercase = !start.equals(start.toUpperCase());
-			if(hasUppercase)
-			{
-				double a = 20/19d;
-				 a = min*a; 
-				min= (int)Math.ceil(a);
-			}
-			else
-				min = min+1;
->>>>>>> parent of 97c8f38... update
 		mtable.put(start,min);
 		return min;
 		
