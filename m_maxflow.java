@@ -1,6 +1,9 @@
 import java.util.*;
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> parent of 97c8f38... update
 public class m_maxflow {
 	class Edge
 	{
@@ -36,6 +39,7 @@ public class m_maxflow {
 				edges.add(object.new Edge(s,e,w));
 				s = sc.next();
 			}
+<<<<<<< HEAD
 			if(vertices.size()<=0)
 			{
 				System.out.println("NIL");
@@ -63,10 +67,26 @@ public class m_maxflow {
 					System.out.println(ans);
 			}
 			
+=======
+
+			HashMap<String,HashMap<String,Integer>> minPath = new HashMap<String,HashMap<String,Integer>>();
+			for(Edge edge:edges)
+			{
+				String key = edge.startNode;
+				minPath.computeIfAbsent(key, k -> new HashMap<String,Integer>()).put(edge.endNode,edge.weight);
+				
+			}
+			int ans = findMaxofMin(minPath,start,end);
+			if(ans==Integer.MAX_VALUE || ans==Integer.MIN_VALUE)
+				System.out.println("NIL");
+			else
+				System.out.println(ans);
+>>>>>>> parent of 97c8f38... update
 		}
 		 sc.close();
 	}
 	
+<<<<<<< HEAD
 	public static int findMaxofMin(HashMap<String,ArrayList<Edge>> graph,HashMap<String,Integer> mtable,String start,String end)
 	{
 		int max = Integer.MIN_VALUE;
@@ -89,6 +109,26 @@ public class m_maxflow {
 		}	
 		mtable.put(start,max);
 		
+=======
+	public static int findMaxofMin(HashMap<String,HashMap<String,Integer>> minPath,String start,String end)
+	{
+		int max = Integer.MIN_VALUE;
+		
+		if(start==end)
+			return Integer.MAX_VALUE;
+		HashMap<String,Integer> currentMap = minPath.get(start);
+		if(currentMap!=null)
+		{
+			Integer val = currentMap.get(end);
+			if( val!= null)
+				return val;			
+			for(String s:currentMap.keySet())
+			{
+				max = Math.max(max,Math.min(currentMap.get(s),findMaxofMin(minPath,s,end)));
+			}
+		}
+		minPath.computeIfAbsent(start,k -> new HashMap<String,Integer>()).put(end,max);
+>>>>>>> parent of 97c8f38... update
 		return max;
 	}
 
